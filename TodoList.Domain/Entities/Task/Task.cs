@@ -2,10 +2,15 @@
 
 #nullable disable
 
-namespace TodoList.Domain.Entities;
+namespace TodoList.Domain.Entities.Task;
 
 public class Task : BaseEntity<Guid>
 {
+    public Task()
+    {
+        Id = Guid.NewGuid();
+    }
+
     public required string Description { get; set; }
 
     public required string Title { get; set; }
