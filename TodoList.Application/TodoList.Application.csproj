@@ -13,4 +13,8 @@
     <Folder Include="UseCases\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TodoList.Infrastructure\TodoList.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

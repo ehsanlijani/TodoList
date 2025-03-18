@@ -4,6 +4,11 @@
 
 public class BaseEntity<T>
 {
+    public BaseEntity()
+    {
+        CreatedAt = DateTime.Now;
+    }
+
     public required T Id { get; set; }
 
     public DateTime? DeletedTime { get; set; }
