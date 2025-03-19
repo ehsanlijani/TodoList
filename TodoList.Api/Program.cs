@@ -1,4 +1,5 @@
 
+using TodoList.Application;
 using TodoList.Infrastructure;
 
 namespace TodoList.Api;
@@ -19,7 +20,9 @@ public class Program
 
         #region Add Dependecies
 
-        builder.Services.RegisterInfrastructureConfiguration(builder.Configuration);
+        builder.Services
+            .RegisterInfrastructureConfiguration(builder.Configuration)
+            .RegisterApplicationConfigurations();
 
         #endregion Add Dependecies
 
