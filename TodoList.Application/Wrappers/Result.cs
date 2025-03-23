@@ -1,47 +1,24 @@
-﻿using System.Text.Json.Serialization;
+﻿namespace TodoList.Application.Wrappers;
 
-namespace TodoList.Application.Wrappers;
-
-public class Result
+public class Result<T>
 {
-    public bool IsSuccess { get; init; }
-
-    [JsonIgnore]
+    public bool IsSuccess { get; }
     public bool IsFailure => !IsSuccess;
+    public T? Value { get; }
+    public string? Error { get; }
 
-    public Error Error { get; init; }
-
-    protected Result(bool isSuccess, Error error)
+    private Result(T value)
     {
-        IsSuccess = isSuccess;
+        IsSuccess = true;
+        Value = value;
+    }
+
+    private Result(string error)
+    {
+        IsSuccess = false;
         Error = error;
     }
 
-    public static Result Failure(Error error)
-        => new(false, error);
-
-    public static Result Success()
-        => new(true, Error.None);
-
-    public static Result<T> Failure<T>(Error error)
-        => Result<T>.Failure(error);
-
-    public static Result<T> Success<T>(T data)
-        => Result<T>.Success(data);
-}
-
-public class Result<T> : Result
-{
-    public T Data { get; }
-
-    private Result(bool isSuccess, T data, Error error) : base(isSuccess, error)
-    {
-        Data = data;
-    }
-
-    public static Result<T> Success(T result)
-        => new(true, result, Error.None);
-
-    public new static Result<T> Failure(Error error)
-        => new(false, default!, error);
+    public static Result<T> Success(T value) => new(value);
+    public static Result<T> Failure(string error) => new(error);
 }
