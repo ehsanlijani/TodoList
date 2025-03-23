@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TodoList.Infrastructure.Persistence.Context;
 
@@ -11,9 +12,11 @@ using TodoList.Infrastructure.Persistence.Context;
 namespace TodoList.Infrastructure.Migrations
 {
     [DbContext(typeof(TodoListDBContext))]
-    partial class TodoListDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250321101931_ChangeIsDeleteInBaseEntity")]
+    partial class ChangeIsDeleteInBaseEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

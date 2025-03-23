@@ -4,26 +4,11 @@
 
 public class BaseEntity<T>
 {
-    public BaseEntity()
-    {
-        CreatedAt = DateTime.Now;
-    }
-
     public required T Id { get; set; }
 
     public DateTime? DeletedTime { get; set; }
 
-    public bool IsDeleted
-    {
-        get
-        {
-            if (DeletedTime is not null || DeletedTime != DateTime.MinValue)
-                return true;
-
-            else
-                return false;
-        }
-    }
+    public bool IsDelete { get; set; }
 
     public required DateTime CreatedAt { get; set; }
 
